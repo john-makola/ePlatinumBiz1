@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane disable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.93" prefHeight="430.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+   <children>
+      <ImageView fitHeight="80.0" fitWidth="200.0" layoutX="192.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/Logo3.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="169.0" layoutY="228.0" opacity="0.89" text="Username">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="175.0" layoutY="269.0" opacity="0.85" text="Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="305.0" opacity="0.94" text="Confirm Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label focusTraversable="false" layoutX="173.0" layoutY="100.0" opacity="0.82" text="Firstname">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="174.0" layoutY="141.0" opacity="0.93" text="Lastname">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="145.0" layoutY="185.0" opacity="0.91" text="Telphone No">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="firstname" layoutX="278.0" layoutY="102.0" opacity="0.93" prefHeight="25.0" prefWidth="270.0" />
+      <TextField fx:id="lastname" layoutX="278.0" layoutY="143.0" opacity="0.93" prefHeight="25.0" prefWidth="270.0" />
+      <TextField fx:id="telNo" layoutX="278.0" layoutY="188.0" opacity="0.93" prefHeight="25.0" prefWidth="270.0" />
+      <TextField fx:id="username" layoutX="278.0" layoutY="230.0" opacity="0.93" prefHeight="25.0" prefWidth="270.0" />
+      <PasswordField fx:id="password" layoutX="278.0" layoutY="271.0" opacity="0.93" prefHeight="25.0" prefWidth="270.0" />
+      <PasswordField fx:id="passwordConfirm" layoutX="278.0" layoutY="307.0" opacity="0.93" prefHeight="25.0" prefWidth="270.0" />
+      <Button fx:id="submitButton" layoutX="402.0" layoutY="344.0" mnemonicParsing="false" onAction="#postDta" opacity="0.85" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #7ccc2f;" text="Submit" textFill="#fff8f8">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelButton" layoutX="277.0" layoutY="344.0" mnemonicParsing="false" onAction="#setCancelButtonOnAction" opacity="0.98" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #20120f;" text="Cancel" textFill="#ebe5e5">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="updateLabel" layoutX="262.0" layoutY="386.0" prefHeight="30.0" prefWidth="281.0" textFill="#f20707">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
