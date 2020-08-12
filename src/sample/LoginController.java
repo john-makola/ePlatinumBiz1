@@ -16,10 +16,9 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -38,7 +37,55 @@ public class LoginController implements Initializable {
     @FXML
     private TextField enterPasswordField;
     @FXML
-    private Button loginButton;
+    private ImageView logoImageView;
+    @FXML
+    private Button signupButton;
+
+    //Open Signup Window
+
+@FXML SignupController signupController;
+
+
+    @FXML
+    private void signUp(ActionEvent event) throws IOException {
+
+        Parent View1 = FXMLLoader.load(getClass().getResource("Signup.fxml"));
+        Scene scene3 = new Scene(View1);
+        Stage Window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Window.setScene(scene3);
+        Window.show();
+
+}
+    @FXML DashController dashController;
+    @FXML
+    private void dash(ActionEvent event) throws IOException {
+
+        if (validateLogin()) {
+            System.out.println("Sawa");
+            Parent View2 = FXMLLoader.load(getClass().getResource("DashScreen.fxml"));
+            Scene scene2 = new Scene(View2);
+            Stage Window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Window.setScene(scene2);
+            Window.show();
+        }
+    }
+
+
+
+//Open DashBoard Window
+    @FXML
+    private void shopOnline(ActionEvent event) throws IOException {
+       validateLogin();
+           Parent View2 = FXMLLoader.load(getClass().getResource("DashScreen.fxml"));
+           Scene scene2 = new Scene(View2);
+           Stage Window = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+           Window.setScene(scene2);
+           Window.show();
+
+    }
 
 
 
@@ -52,6 +99,10 @@ public class LoginController implements Initializable {
         File LockFile = new File("images/Padlock.png");
         Image LockImage = new Image(LockFile.toURI().toString());
         lockImageView.setImage(LockImage);
+
+       File LogoFile = new File("images/Logo3.png");
+       Image LogoImage = new Image(LogoFile.toURI().toString());
+       logoImageView.setImage(LogoImage);
     }
 
     //Cancel Button Method
@@ -72,11 +123,12 @@ public class LoginController implements Initializable {
 
 
     //Validate user data
-    public void validateLogin()  {
+    public boolean  validateLogin()  {
         DatabaseConnection  connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
+        //boolean answer = false;
 
-        String verifyLogin = "SELECT count(1) FROM user_accounts WHERE username  = '" + usernameTextField.getText() + "' AND password = '" + enterPasswordField.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM signup WHERE username  = '" + usernameTextField.getText() + "' AND password = '" + enterPasswordField.getText() + "'";
         try{
 
             Statement Statement = connectDB.createStatement();
@@ -85,7 +137,7 @@ public class LoginController implements Initializable {
             while(queryResult.next()){
                 if(queryResult.getInt(1)==1){
                     loginMessageLabel.setText("Congrats");
-
+                    //answer =true;
                 }else{
                     loginMessageLabel.setText("Invalid Logins");
                 }
@@ -94,6 +146,7 @@ public class LoginController implements Initializable {
         e.printStackTrace();
         e.getCause();
         }
+        return true;
     }
 
 

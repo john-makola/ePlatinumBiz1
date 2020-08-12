@@ -18,10 +18,10 @@
          </children>
       </AnchorPane>
    </left>
-   <center>
-      <AnchorPane prefHeight="400.0" prefWidth="372.0" BorderPane.alignment="CENTER">
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="372.0" style="-fx-background-color: #D1EAF1;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="lockImageView" fitHeight="65.0" fitWidth="47.0" layoutX="163.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="lockImageView" fitHeight="65.0" fitWidth="47.0" layoutX="305.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/Padlock.png" />
                </image>
@@ -37,15 +37,21 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Button fx:id="loginButton" layoutX="43.0" layoutY="273.0" mnemonicParsing="false" onAction="#validateLogin" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #7ccc2f;" text="Login" textFill="WHITE" />
-            <Button fx:id="cancelButton" layoutX="43.0" layoutY="315.0" mnemonicParsing="false" onAction="#setCancelButtonOnAction" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #7ccc2f;" text="Cancel" textFill="WHITE" />
-            <Label fx:id="loginMessageLabel" layoutX="43.0" layoutY="244.0" prefHeight="19.0" prefWidth="255.0" text="Invalid Login Please try again" textFill="#7ccc2f">
+            <Button fx:id="loginButton" layoutX="43.0" layoutY="273.0" mnemonicParsing="false" onAction="#dash" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #7ccc2f;" text="Login" textFill="WHITE" />
+            <Button fx:id="cancelButton" layoutX="43.0" layoutY="315.0" mnemonicParsing="false" onAction="#setCancelButtonOnAction" prefHeight="25.0" prefWidth="305.0" style="-fx-background-color: #253239;" text="Cancel" textFill="WHITE" />
+            <Label fx:id="loginMessageLabel" layoutX="43.0" layoutY="244.0" prefHeight="19.0" prefWidth="255.0" textFill="#cc4c31">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <PasswordField fx:id="enterPasswordField" layoutX="112.0" layoutY="201.0" prefHeight="25.0" prefWidth="237.0" promptText="Password" />
+            <Button fx:id="signupButton" layoutX="147.0" layoutY="113.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: #253239;" text="Signup /Create a New User" textFill="WHITE" />
+            <ImageView fx:id="logoImageView" fitHeight="80.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Logo3.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-   </center>
+   </right>
 </BorderPane>

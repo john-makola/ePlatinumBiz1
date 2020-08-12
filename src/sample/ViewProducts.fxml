@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddDataTableviewController">
+   <top>
+      <AnchorPane focusTraversable="true" prefHeight="100.0" prefWidth="1024.0" style="-fx-background-color: #1E110E;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="logoImageView" fitHeight="114.0" fitWidth="295.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Logo3.png" />
+               </image>
+            </ImageView>
+            <MenuBar layoutX="315.0" layoutY="102.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#uploadData" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children></AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="499.0" prefWidth="275.0" style="-fx-background-color: #253239;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="pName" layoutY="33.0" prefHeight="25.0" prefWidth="441.0" promptText="Name of the Product here" />
+            <TextArea fx:id="pDescription" layoutY="106.0" prefHeight="52.0" prefWidth="441.0" promptText="Decription of the Product" />
+            <TextField fx:id="pPrice" layoutX="271.0" layoutY="237.0" promptText="0.00" />
+            <TextField fx:id="pPackaging" layoutX="271.0" layoutY="288.0" promptText="Kg, Pcs,Ltrs" />
+            <TextField fx:id="pQuantity" layoutX="271.0" layoutY="324.0" promptText="1" text="1" />
+            <Label layoutX="189.0" layoutY="225.0" prefHeight="38.0" prefWidth="102.0" text="Price" textFill="#ebe2e2" />
+            <Label layoutX="185.0" layoutY="275.0" prefHeight="38.0" prefWidth="102.0" text="Packaging" textFill="WHITE" />
+            <Label layoutX="185.0" layoutY="317.0" prefHeight="38.0" prefWidth="102.0" text="Quantity" textFill="#ebebeb" />
+            <Button fx:id="puploadData" layoutX="141.0" layoutY="433.0" mnemonicParsing="false" onAction="#setpAddproduct" style="-fx-background-color: #D1EAF1;" text="Add new Product" textFill="#220303" />
+            <ComboBox fx:id="pCategory" layoutY="200.0" prefHeight="33.0" prefWidth="439.0" promptText="Fresh Foods" />
+            <Label layoutX="6.0" layoutY="-5.0" prefHeight="38.0" prefWidth="128.0" text="Name of Product" textFill="WHITE" />
+            <Label fx:id="pNameerror" layoutX="195.0" layoutY="58.0" prefHeight="26.0" prefWidth="240.0" textFill="#7ccc2f" />
+            <Label layoutX="6.0" layoutY="65.0" prefHeight="38.0" prefWidth="91.0" text="Description" textFill="#f8f8f8" />
+            <Label layoutX="6.0" layoutY="158.0" prefHeight="38.0" prefWidth="102.0" text="Category" textFill="#fffefe" />
+            <Label fx:id="pPriceerror" layoutX="271.0" layoutY="262.0" prefHeight="26.0" prefWidth="149.0" textFill="#7ccc2f" />
+            <Label fx:id="pQuantityerror" layoutX="271.0" layoutY="355.0" prefHeight="26.0" prefWidth="149.0" textFill="#7ccc2f" />
+            <Button fx:id="pCleardata" layoutX="50.0" layoutY="433.0" mnemonicParsing="false" onAction="#clearFields" style="-fx-background-color: #D1EAF1;" text="Clear Data" textFill="#220303" />
+            <Button fx:id="pUploadimage" layoutX="40.0" layoutY="395.0" mnemonicParsing="false" onAction="#uploadimagem" style="-fx-background-color: #20120F;" text="Upload image" textFill="WHITE" />
+            <Label layoutX="331.0" layoutY="394.0" prefHeight="47.0" prefWidth="64.0" text="Kes" textAlignment="CENTER" textFill="#7ccc2f">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="pTotalstext" layoutX="288.0" layoutY="450.0" prefHeight="38.0" prefWidth="150.0" text="0.00" textAlignment="CENTER" textFill="#7ccc2f">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="updatelabel" layoutX="57.0" layoutY="469.0" prefHeight="26.0" prefWidth="295.0" textFill="#7ccc2f" />
+            <AnchorPane fx:id="pProductImageAnchor" layoutX="3.0" layoutY="238.0" prefHeight="155.0" prefWidth="163.0" style="-fx-background-color: #253239;">
+               <children>
+                  <ImageView fx:id="productmageView" fitHeight="135.0" fitWidth="149.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/Cart.png" />
+                     </image></ImageView>
+               </children>
+            </AnchorPane>
+            <TextArea fx:id="textArea" layoutX="14.0" layoutY="468.0" prefHeight="27.0" prefWidth="200.0" />
+         </children></AnchorPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="tablepane" prefHeight="499.0" prefWidth="619.0" style="-fx-background-color: #D1EAF1;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableMain" layoutX="-1.0" prefHeight="400.0" prefWidth="581.0" snapToPixel="false">
+               <columns>
+                  <TableColumn fx:id="productNo" prefWidth="62.0" text="#No:" />
+                  <TableColumn fx:id="pNameT" prefWidth="88.0" text="Name" />
+                  <TableColumn fx:id="pDescriptionT" prefWidth="140.0" text="Description" />
+                  <TableColumn fx:id="pcategoryT" prefWidth="67.0" text="Category" />
+                  <TableColumn fx:id="pPriceT" prefWidth="79.0" text="Price" />
+                  <TableColumn fx:id="pPackagingT" prefWidth="120.0" text="Packaging" />
+                  <TableColumn fx:id="pQuantityT" prefWidth="100.0" text="Quantity" />
+               </columns>
+            </TableView>
+         </children></AnchorPane>
+   </center>
+</BorderPane>

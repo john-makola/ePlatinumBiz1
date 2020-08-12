@@ -1,7 +1,6 @@
 package sample;
 
 
-import javafx.css.Match;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -159,7 +158,6 @@ public class SignupController implements Initializable {
         passwordStrength.setText(null);
         passwordMatch.setText(null);
         usernameError.setText(null);
-
     }
 
     // Method Validate if if Password Matches Policy

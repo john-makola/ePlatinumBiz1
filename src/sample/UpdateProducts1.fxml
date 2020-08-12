@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddProductsController">
+   <children>
+      <AnchorPane prefHeight="118.0" prefWidth="648.0" style="-fx-background-color: #1E110E;">
+         <children>
+            <ImageView fx:id="logoImageView" fitHeight="118.0" fitWidth="401.0" layoutX="180.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Logo3.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="118.0" prefHeight="135.0" prefWidth="648.0" style="-fx-background-color: #D1EAF1;">
+         <children>
+            <Label layoutX="14.0" prefHeight="38.0" prefWidth="128.0" text="Name of Product" />
+            <Label layoutX="14.0" layoutY="38.0" prefHeight="38.0" prefWidth="91.0" text="Description" />
+            <Label layoutX="14.0" layoutY="85.0" prefHeight="38.0" prefWidth="102.0" text="Category" />
+            <TextField fx:id="pName" layoutX="142.0" layoutY="3.0" prefHeight="25.0" prefWidth="433.0" promptText="Name of the Product here" />
+            <Label fx:id="pNameerror" layoutX="397.0" layoutY="2.0" prefHeight="26.0" prefWidth="240.0" textFill="#7ccc2f">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <HBox fx:id="hBox" layoutX="78.0" layoutY="91.0" prefHeight="38.0" prefWidth="565.0">
+               <children>
+                  <ComboBox fx:id="pCategory" prefHeight="33.0" prefWidth="498.0" promptText="Fresh Foods" />
+               </children>
+            </HBox>
+            <TextArea fx:id="pDescription" layoutX="140.0" layoutY="31.0" prefHeight="52.0" prefWidth="433.0" promptText="Decription of the Product" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="253.0" prefHeight="318.0" prefWidth="446.0" style="-fx-background-color: #253239;">
+         <children>
+            <Label layoutX="14.0" layoutY="-4.0" prefHeight="38.0" prefWidth="102.0" text="Price" textFill="#ebe2e2" />
+            <Label layoutX="14.0" layoutY="59.0" prefHeight="38.0" prefWidth="102.0" text="Packaging" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="122.0" prefHeight="38.0" prefWidth="102.0" text="Quantity" textFill="#ebebeb" />
+            <TextField fx:id="pPrice" layoutX="116.0" layoutY="3.0" promptText="0.00" />
+            <TextField fx:id="pPackaging" layoutX="116.0" layoutY="66.0" promptText="Kg, Pcs,Ltrs" />
+            <TextField fx:id="pQuantity" layoutX="116.0" layoutY="129.0" promptText="1" text="1" />
+            <Button fx:id="pUploadimage" layoutX="368.0" layoutY="175.0" mnemonicParsing="false" onAction="#uploadImage" style="-fx-background-color: #20120F;" text="Upload image" textFill="WHITE" />
+            <Button fx:id="pCleardata" layoutX="291.0" layoutY="176.0" mnemonicParsing="false" onAction="#clearFields" style="-fx-background-color: #D1EAF1;" text="Clear Data" textFill="#220303" />
+            <Label fx:id="updatelabel" layoutX="81.0" layoutY="219.0" prefHeight="26.0" prefWidth="295.0" textFill="#fffdfd">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="pPriceerror" layoutX="116.0" layoutY="34.0" prefHeight="26.0" prefWidth="149.0" textFill="#fffdfd">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="pQuantityerror" layoutX="116.0" layoutY="163.0" prefHeight="26.0" prefWidth="149.0" textFill="#fffdfd">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="pProductImageAnchor" layoutX="268.0" layoutY="4.0" prefHeight="162.0" prefWidth="188.0" style="-fx-background-color: #ECECEC;">
+               <children>
+                  <ImageView fx:id="productmageView" fitHeight="156.0" fitWidth="182.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="458.0" layoutY="253.0" prefHeight="310.0" prefWidth="188.0" style="-fx-background-color: #D1EAF1;">
+         <children>
+            <Button fx:id="pAddproduct" layoutX="3.0" layoutY="8.0" mnemonicParsing="false" onAction="#setpAddproduct" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: #7CCC2F;" text="Add Product" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Button>
+            <Button fx:id="pCancel" layoutX="3.0" layoutY="63.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: #253239;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="pTotals" layoutX="2.0" layoutY="121.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: #20120F;" text="Totals" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Label layoutX="4.0" layoutY="129.0" prefHeight="62.0" prefWidth="182.0" text="Label" textAlignment="CENTER" textFill="#7ccc2f" visible="false">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="pTotalstext" layoutX="11.0" layoutY="225.0" prefHeight="38.0" prefWidth="168.0" text="0.00" textAlignment="CENTER" textFill="#7ccc2f">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="61.0" layoutY="178.0" prefHeight="47.0" prefWidth="64.0" text="Kes" textAlignment="CENTER" textFill="#7ccc2f">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

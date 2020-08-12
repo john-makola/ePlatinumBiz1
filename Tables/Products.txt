@@ -1,0 +1,16 @@
+CREATE TABLE `eplatinumbiz`.`products` (
+  `idProducts` INT NOT NULL AUTO_INCREMENT,
+  `pName` VARCHAR(45) NOT NULL,
+  `pDescription` VARCHAR(100) NULL,
+  `pCategory` VARCHAR(45)NULL,
+  `pPrice` INT NOT NULL,
+  `pPackaging` VARCHAR(45) NOT NULL,
+  `pQuantity` INT NOT NULL,
+  `pImage` BLOB NULL,
+  PRIMARY KEY (`idProducts`),
+  UNIQUE INDEX `pName_UNIQUE` (`pName` ASC) VISIBLE)
+COMMENT = 'Products and Services Table';
+
+
+
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DashController">
+   <top>
+      <AnchorPane prefHeight="122.0" prefWidth="200.0" style="-fx-background-color: #1E110E;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="27.0" layoutY="89.0" prefHeight="25.0" prefWidth="352.0" promptText="Search: Name of Product, Service, Date Posted" style="-fx-background-color: #ffffff;" />
+            <ImageView fx:id="logoImageView" fitHeight="80.0" fitWidth="200.0" layoutX="187.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Logo3.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="379.0" layoutY="89.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="201.0" style="-fx-background-color: #7ccc2f;" text="Search for Products" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #253239;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="CartImageView" fitHeight="138.0" fitWidth="147.0" layoutX="27.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Cart.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="mainpane" prefHeight="278.0" prefWidth="400.0" style="-fx-background-color: #dbf6fd;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="market" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="183.0" style="-fx-background-color: #253239;" text="Market Place" textAlignment="CENTER" textFill="#f5f5f5" wrapText="true">
+               <font>
+                  <Font name="Courier New Bold" size="31.0" />
+               </font>
+            </Button>
+            <Button fx:id="mostviewed" layoutX="200.0" layoutY="14.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="183.0" text="Most viewed Products &amp; Services" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Courier New" size="18.0" />
+               </font></Button>
+            <Button fx:id="updateProducts" layoutX="8.0" layoutY="141.0" mnemonicParsing="false" onAction="#addProducts" prefHeight="123.0" prefWidth="183.0" text="Update Products" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Courier New" size="24.0" />
+               </font></Button>
+            <Button fx:id="latestproducts" layoutX="200.0" layoutY="141.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="183.0" style="-fx-background-color: #253239;" text="Latest Products" textAlignment="CENTER" textFill="#fcfcfc" wrapText="true">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

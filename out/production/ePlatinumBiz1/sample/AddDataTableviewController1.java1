@@ -1,0 +1,158 @@
+package sample;
+
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.File;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+
+public class AddDataTableviewController1 implements Initializable {
+    @FXML
+    private TableColumn<Products, String > pPackagingT;
+
+    @FXML
+    private TextField pPrice;
+
+    @FXML
+    private ComboBox<?> pCategory;
+
+    @FXML
+    private TextField pQuantity;
+
+    @FXML
+    private TableColumn<Products, String> pNameT;
+
+    @FXML
+    private TableColumn<Products, Integer> pPriceT;
+
+    @FXML
+    private TableColumn<Products, Integer> pQuantityT;
+
+    @FXML
+    private TextField pPackaging;
+
+    @FXML
+    private TableView<Products> tableMain;
+
+    @FXML
+    private TableColumn<Products, String> pDescriptionT;
+
+    @FXML
+    private ImageView logoImageView;
+
+    @FXML
+    private Button puploadData;
+
+    @FXML
+    private TextField pName;
+
+    @FXML
+    private TextArea pDescription;
+
+    @FXML
+    private ImageView productmageView;
+
+    private ObservableList<Products> tableData = FXCollections.observableArrayList();
+    ObservableList category = FXCollections.observableArrayList();
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Statements to Load Images on Fly
+        File LogoFile = new File("images/Logo3.png");
+        Image LogoImage = new Image(LogoFile.toURI().toString());
+        logoImageView.setImage(LogoImage);
+
+        File CartFile = new File("images/Cart.png");
+        Image CartImage = new Image(CartFile.toURI().toString());
+        productmageView.setImage(CartImage);
+
+        //ComboBox
+        fillCombobox();
+        //pCategory.getItems().clear();
+        //pCategory.setPromptText("Choose Product/ Service Category");
+        //pCategory.setEditable(true);
+        pCategory.setItems(category);
+
+
+        initTable();
+        // if the data is coming from an other class you have probably a list of them,
+        // if not you can simply populate the tableData
+        List<ProductsDto> dtosFromDB = new ArrayList<>();
+        tableData.addAll(dtosFromDB.stream().map(this::convertDtoToModel).collect(Collectors.toList()));
+    }
+
+    private void initTable() {
+
+        tableMain.setItems(tableData);
+
+        pNameT.setCellValueFactory(data -> data.getValue().nameProperty()); // here is where tha magic happens :)
+        pDescriptionT.setCellValueFactory(data -> data.getValue().descriptionProperty()); // this sets the cells value from
+        // the model.
+        pPriceT.setCellValueFactory(data -> data.getValue().priceProperty().asObject());
+        pPackagingT.setCellValueFactory(data -> data.getValue().packagingProperty());
+        pQuantityT.setCellValueFactory(data -> data.getValue().quantityProperty().asObject());
+    }
+
+    private Products convertDtoToModel(ProductsDto dto) {
+        return new Products(dto.getName(),dto.getDescription(),dto.getPrice(),dto.getPackaging(),dto.getQuantity());
+    }
+
+    //Fill Combox
+    public int fillCombobox(){
+
+        int connection=0;
+        try {
+            DatabaseConnection connectNow = new DatabaseConnection();
+            Connection connectDB = connectNow.getConnection();
+            String query = "select categoryname from category";
+
+            PreparedStatement Statement1 = connectDB.prepareStatement(query);
+            ResultSet result = Statement1.executeQuery();
+            while (result.next()){
+                category.addAll(result.getString("categoryname"));
+            }
+            Statement1.close();
+            result.close();
+
+        } catch (SQLException e) {
+
+        }
+        return connection;
+    }
+
+
+    // Clear All Fields After Data Entry
+    public void clearFields(){
+        pName.setText(null);
+        pDescription.setText(null);
+        pPackaging.setText(null);
+        pQuantity.setText("1");
+        pPrice.setText("0");
+        // pQuantityerror.setText(null);
+        // pPriceerror.setText(null);
+        // pNameerror.setText(null);
+        // pTotalstext.setText("0"+"."+"00");
+        pCategory.setValue(null);
+        // pCategory.setPromptText("Choose you Product/ Service");
+
+    }
+
+}
+
+
