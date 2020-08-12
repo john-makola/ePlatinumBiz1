@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -178,6 +180,49 @@ public class MarketController implements Initializable {
 
       });
 
+// Detect Up and Down Arrow Keys
+tableMain.setOnKeyReleased(e->{
+    if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN);{
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        try {
+
+            Products products = tableMain.getSelectionModel().getSelectedItem();
+            String query = "select * from products where idproducts = ? ";
+            PreparedStatement Statement1 = connectDB.prepareStatement(query);
+            Statement1.setInt(1,products.getProductid());
+
+            ResultSet rs = Statement1.executeQuery();
+
+
+            while (rs.next()) {
+                tproductId.setText(rs.getString("idproducts"));
+                tName.setText(rs.getString("pName"));
+                tPrice.setText(rs.getString("pPrice"));
+
+                InputStream is = rs.getBinaryStream("pImage");
+                OutputStream os = new FileOutputStream(new File("Photo.jpg"));
+                byte [] content = new byte[1024];
+                int size = 0;
+                while ((size = is.read(content))!=-1){
+
+                    os.write(content,0,size);
+                }
+                os.close();
+                is.close();
+                Image image = new Image("file:Photo.jpg",211,203,true,true);
+                cartImage.setImage(image);
+            }
+        } catch (SQLException | FileNotFoundException ef) {
+            System.err.println("Error"+e);
+
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
+});
 
 //Delete Selected Items from My Basket
         deletebutton.setOnAction(e -> {
@@ -205,26 +250,24 @@ public class MarketController implements Initializable {
             });
 
         }
+// Search Filter For Main Table
+        FilteredList<Products> filteredData = new FilteredList<>(tableData, p ->true);
+        searchitems.textProperty().addListener((observableValue, oldValue, newValue) ->{
+            filteredData.setPredicate(products -> {
+                if(newValue == null || newValue.isEmpty()){
+                return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if(products.getName().toLowerCase().contains(lowerCaseFilter)){
+                    return true;
+                }else if(String.valueOf(products.getProductid()).indexOf(lowerCaseFilter)!=-1){
+                    return true;
+                }
+                return false;
+            });
+        });
+        tableMain.setItems(filteredData);
 
-
-
-        /*FilteredList<Products> filtereddata = new FilteredList<>(tableData , e->true);
-        searchitems.setOnKeyReleased(e->{
-            searchitems.textProperty().addListener((observableValue, oldValue,newValue) -> {
-                filtereddata.setPredicate((product ->{
-                   if(newValue ==null || newValue.isEmpty()){
-                       filteredData.setPredicate(s -> s.contains(filter));
-                       return true;
-                   }
-                   String lowercaseFilter = newValue.toLowerCase();
-                   if((String.valueOf(product.getProductid(newValue)).indexOf(lowercaseFilter)!=-1)){
-                       return true;
-                   }else if (String.valueOf((product.getName(newValue).toLowerCase().indexOf(lowercaseFilter)!=-1){
-                       return true;
-                    }
-                    return false;
-            }));
-        });*/
 
 
 //Display Time and Date
@@ -234,8 +277,6 @@ public class MarketController implements Initializable {
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
-
-
     }
 
     //FillTable Top Table
@@ -285,7 +326,6 @@ public class MarketController implements Initializable {
                 total = (int) (total + price.getTotal());
                 tTotal1.setText(numberFormat.format(total));
             }
-
         }
 
 
@@ -305,15 +345,15 @@ public class MarketController implements Initializable {
         stage.close();
     }
 
+
+    //Go Back to Home
     @FXML
     private void gohome(ActionEvent event) throws IOException {
         Parent View2 = FXMLLoader.load(getClass().getResource("DashScreen.fxml"));
         Scene scene2 = new Scene(View2);
         Stage Window = (Stage)((Node) event.getSource()).getScene().getWindow();
-
         Window.setScene(scene2);
         Window.show();
-
     }
 
     @FXML
